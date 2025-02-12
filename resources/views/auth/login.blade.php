@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="{{asset('dashboard/user/vendor/fonts/tabler-icons.css')}}" />
     <link rel="stylesheet" href="{{asset('dashboard/user/vendor/fonts/flag-icons.css')}}" />
 
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <!-- Core CSS -->
 
     <link rel="stylesheet" href="{{asset('dashboard/user/vendor/css/rtl/core.css')}}" class="template-customizer-core-css" />
