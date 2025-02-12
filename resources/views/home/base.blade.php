@@ -547,11 +547,10 @@
 </script>
 <!-- end popup massage -->
 @stack('js')
-
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
     var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '397b5a2eea6f0906b8f6727fac0ce7e67ee7793d';
+    _smartsupp.key = 'cd75200f59995d5bd35dd1ea4ae6d0eb3b4f8bff';
     window.smartsupp||(function(d) {
         var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
         s=d.getElementsByTagName('script')[0];c=d.createElement('script');
