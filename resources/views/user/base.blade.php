@@ -216,29 +216,17 @@
 
                                 <ul class="menu-sub">
                                     <li class="menu-item">
-                                        <a href="{{url('account/new_investment')}}" class="menu-link">
-                                            <i class="menu-icon tf-icons ti ti-mail"></i>
+                                        <a href="{{url('account/new_deposit')}}" class="menu-link">
+                                            <i class="menu-icon tf-icons ti ti-menu-2"></i>
                                             <div data-i18n="New Deposit">New Deposit</div>
                                         </a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="{{url('account/investments')}}" class="menu-link">
-                                            <i class="menu-icon tf-icons ti ti-messages"></i>
+                                        <a href="{{url('account/deposits')}}" class="menu-link" >
+                                            <i class="menu-icon tf-icons ti ti-layout-distribute-vertical"></i>
                                             <div data-i18n="Deposit History">Deposit History</div>
                                         </a>
                                     </li>
-{{--                                    <li class="menu-item">--}}
-{{--                                        <a href="{{url('account/new_deposit')}}" class="menu-link">--}}
-{{--                                            <i class="menu-icon tf-icons ti ti-menu-2"></i>--}}
-{{--                                            <div data-i18n="New Deposit">New Deposit</div>--}}
-{{--                                        </a>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="menu-item">--}}
-{{--                                        <a href="{{url('account/deposits')}}" class="menu-link" >--}}
-{{--                                            <i class="menu-icon tf-icons ti ti-layout-distribute-vertical"></i>--}}
-{{--                                            <div data-i18n="Deposit History">Deposit History</div>--}}
-{{--                                        </a>--}}
-{{--                                    </li>--}}
                                     <li class="menu-item">
                                         <a href="{{url('account/transfer')}}" class="menu-link">
                                             <i class="menu-icon tf-icons ti ti-menu-2"></i>
@@ -249,15 +237,26 @@
                             </li>
 
                             <!-- Apps -->
-{{--                            <li class="menu-item">--}}
-{{--                                <a href="javascript:void(0)" class="menu-link menu-toggle">--}}
-{{--                                    <i class="menu-icon tf-icons ti ti-layout-grid-add"></i>--}}
-{{--                                    <div data-i18n="Investments">Investments</div>--}}
-{{--                                </a>--}}
-{{--                                <ul class="menu-sub">--}}
-{{--                                    --}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                                    <i class="menu-icon tf-icons ti ti-layout-grid-add"></i>
+                                    <div data-i18n="Investments">Investments</div>
+                                </a>
+                                <ul class="menu-sub">
+                                    <li class="menu-item">
+                                        <a href="{{url('account/new_investment')}}" class="menu-link">
+                                            <i class="menu-icon tf-icons ti ti-mail"></i>
+                                            <div data-i18n="New Investment">New Investment</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="{{url('account/investments')}}" class="menu-link">
+                                            <i class="menu-icon tf-icons ti ti-messages"></i>
+                                            <div data-i18n="Investment History">Investment History</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
                             <!-- Pages -->
                             <li class="menu-item">

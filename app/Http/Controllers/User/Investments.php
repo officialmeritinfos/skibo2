@@ -103,9 +103,9 @@ class Investments extends Controller
                 $balance = $user->balance;
                 $source = 'balance';
                 $newBalance = [
-                    'balance'=>$balance
+                    'balance'=>$balance - $input['amount']
                 ];
-                $status=2;
+                $status=4;
                 break;
             default:
                 $balance = $user->profit;
@@ -117,7 +117,7 @@ class Investments extends Controller
                 break;
         }
 
-        if ($balance < $input['amount'] && $source=='profit'){
+        if ($balance < $input['amount'] ){
             return back()->with('error','Insufficient balance in  account.');
         }
 
