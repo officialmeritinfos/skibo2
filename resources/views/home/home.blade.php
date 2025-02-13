@@ -352,45 +352,7 @@
     <!--About One End-->
 
 
-    <div class="pricing-area" style="margin-bottom: 5rem;margin-top: 5rem;">
-        <div class="container">
-            <div class="section-title text-left">
-                <h2 class="section-title__title"><span>Investment </span> <span>Packages</span></h2>
-            </div>
-            <div class="row justify-content-center">
-                @foreach($packages as $package)
-                    @inject('option','App\Defaults\Custom')
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="single-price">
-                            <div class="deal-top">
-                                <h3>{{$package->name}}</h3>
-                                <h4> {{$package->roi}}%/ <span class="sup">{{$option->getReturnType($package->returnType)}}</span> </h4>
-                                <small class="text-white">{{$package->note}}</small>
-                            </div>
-                            <div class="deal-bottom">
-                                <ul class="deal-item">
-                                    <li>
-                                        Price: ${{number_format($package->minAmount,2)}} - @if($package->isUnlimited !=1)
-                                            ${{number_format($package->maxAmount,2)}}
-                                        @else
-                                            Unlimited
-                                        @endif
-                                    </li>
-                                    <li>Profit: {{$package->roi*$package->numberOfReturns}}%</li>
-                                    <li>Profit/Capital Withdrawal: {{$package->capitalDuration}}</li>
-                                    <li>Referral Bonus: {{$package->referral}}% </li>
-                                </ul>
-                                <div class="btn-area">
-                                    <a href="{{route('register')}}">Get Started</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
 
-            </div>
-        </div>
-    </div>
 
 
     <!--About One Start-->
@@ -610,6 +572,47 @@
         </div>
     </section>
     <!--Why Choose End-->
+
+
+    <div class="pricing-area" style="margin-bottom: 5rem;margin-top: 5rem;">
+        <div class="container">
+            <div class="section-title text-left">
+                <h2 class="section-title__title"><span>Investment </span> <span>Packages</span></h2>
+            </div>
+            <div class="row justify-content-center">
+                @foreach($packages as $package)
+                    @inject('option','App\Defaults\Custom')
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="single-price">
+                            <div class="deal-top">
+                                <h3>{{$package->name}}</h3>
+                                <h4> {{$package->roi}}%/ <span class="sup">{{$option->getReturnType($package->returnType)}}</span> </h4>
+                                <small class="text-white">{{$package->note}}</small>
+                            </div>
+                            <div class="deal-bottom">
+                                <ul class="deal-item">
+                                    <li>
+                                        Price: ${{number_format($package->minAmount,2)}} - @if($package->isUnlimited !=1)
+                                            ${{number_format($package->maxAmount,2)}}
+                                        @else
+                                            Unlimited
+                                        @endif
+                                    </li>
+                                    <li>Profit: {{$package->roi*$package->numberOfReturns}}%</li>
+                                    <li>Profit/Capital Withdrawal: {{$package->capitalDuration}}</li>
+                                    <li>Referral Bonus: {{$package->referral}}% </li>
+                                </ul>
+                                <div class="btn-area">
+                                    <a href="{{route('register')}}">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
 
     <!--Project One Start-->
     <section class="project-one">
