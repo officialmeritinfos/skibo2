@@ -1,5 +1,73 @@
 @extends('user.base')
 @section('content')
+    @push('css')
+        <style>
+
+            .transaction-link {
+                text-decoration: none;
+            }
+
+            .transaction-card {
+                background-color: #122c3a;
+                border-radius: 1rem;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                color: #d1d5db;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+                transition: all 0.2s ease;
+            }
+
+            .transaction-card:hover {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                transform: scale(1.01);
+            }
+
+            .transaction-title {
+                font-weight: 600;
+                font-size: 0.95rem;
+            }
+
+            .transaction-id {
+                color: #d9ff00;
+                font-weight: bold;
+                font-size: 0.85rem;
+            }
+
+            .transaction-date {
+                font-size: 0.75rem;
+                color: #9ca3af;
+            }
+
+            .transaction-amount {
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
+            .amount-positive {
+                color: #34d399;
+            }
+
+            .amount-negative {
+                color: #f87171;
+            }
+
+            .transaction-status {
+                font-size: 0.75rem;
+                color: #10b981;
+            }
+
+            .fee {
+                color: #ef4444;
+                font-size: 0.8rem;
+            }
+
+            .label {
+                font-size: 0.7rem;
+                color: #9ca3af;
+                text-transform: uppercase;
+            }
+        </style>
+    @endpush
     @inject('injected','App\Defaults\Custom')
 
     @foreach($promos as $promo)
@@ -269,6 +337,29 @@
 
 
 
+    </div>
+
+    <div class="container py-4">
+        <h5 class="mb-3 text-dark fw-bold">Recent Transactions</h5>
+        @foreach ($transactions as $tx)
+            <div class="transaction-card">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="transaction-title">{{ $tx['label'] }}</div>
+                        <div class="transaction-id">{{ $tx['reference'] }}</div>
+                        <div class="transaction-date">{{ \Carbon\Carbon::parse($tx['created_at'])->format('M d, Y H:i') }}</div>
+                    </div>
+                    <div class="text-end">
+                        <div class="transaction-amount {{ $tx['symbol'] === '+' ? 'amount-positive' : 'amount-negative' }}">
+                            {{ $tx['symbol'] }}{{ number_format($tx['amount'], 2) }} USD
+                        </div>
+                        <div class="fee">−0 USD Fee</div>
+                        <div class="label">{{ ucfirst($tx['type']) }}</div>
+                        <div class="transaction-status">Success</div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 
 

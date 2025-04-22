@@ -9,4 +9,11 @@ class Investment extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function packageModel()
+    {
+        return $this->belongsTo(\App\Models\Package::class, 'package');
+    }
+
+
 }

@@ -9,4 +9,10 @@ class InvestmentReturn extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function investment()
+    {
+        return $this->belongsTo(\App\Models\Investment::class, 'investment');
+    }
+
 }

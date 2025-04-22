@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Deposit;
 use App\Models\GeneralSetting;
 use App\Models\Investment;
+use App\Models\InvestmentReturn;
 use App\Models\Notification;
 use App\Models\Promo;
 use App\Models\User;
@@ -20,6 +21,79 @@ class Dashboard extends Controller
     {
         $web = GeneralSetting::find(1);
         $user = Auth::user();
+
+        $user = auth()->user();
+
+        $deposits = Deposit::where('user', $user->id)->get()->map(function ($item) {
+            return [
+                'amount' => $item->amount,
+                'type' => 'deposit',
+                'label' => 'Deposit',
+                'symbol' => '+',
+                'reference' => $item->reference,
+                'created_at' => $item->created_at,
+            ];
+        });
+
+
+        $investments = \App\Models\Investment::with('packageModel')
+            ->where('user', $user->id)
+            ->get()
+            ->map(function ($item) {
+
+                $packageName = $item->package ? $item->packageModel->name : 'Unknown Package';
+
+                return [
+                    'amount' => $item->amount,
+                    'type' => 'investment',
+                    'label' => "Investment in {$packageName}",
+                    'symbol' => '-',
+                    'reference' => $item->reference,
+                    'created_at' => $item->created_at,
+                ];
+            });
+
+        $returns = InvestmentReturn::with('investment.packageModel')
+            ->whereHas('investment', function ($query) use ($user) {
+                $query->where('user', $user->id);
+            })
+            ->get()
+            ->map(function ($item) {
+                $packageName = $item->investment && $item->investment->packageModel
+                    ? $item->investment->packageModel->name
+                    : 'Unknown Package';
+
+                return [
+                    'amount' => $item->amount,
+                    'type' => 'investment interest',
+                    'label' => "Return on Investment in {$packageName}",
+                    'symbol' => '+',
+                    'reference' => $item->investment ? $item->investment->reference : 'N/A',
+                    'created_at' => $item->created_at,
+                ];
+            });
+
+
+        $withdrawals = Withdrawal::where('user', $user->id)->get()->map(function ($item) {
+            return [
+                'amount' => $item->amount,
+                'type' => 'withdrawal',
+                'label' => 'Withdrawal',
+                'symbol' => '-',
+                'reference' => $item->reference,
+                'created_at' => $item->created_at,
+            ];
+        });
+
+        $transactions = collect()
+            ->merge($deposits)
+            ->merge($investments)
+            ->merge($returns)
+            ->merge($withdrawals)
+            ->sortByDesc('created_at')
+            ->values();
+
+
 
         $dataView =[
             'siteName' => $web->name,
@@ -38,7 +112,8 @@ class Dashboard extends Controller
                 'user'=>$user->id,'status'=>4
             ])->limit(5)->get(),
             'promos'=>Promo::where('status',1)->get(),
-            'notifications'=>Notification::where('status',1)->where('user',$user->id)->get()
+            'notifications'=>Notification::where('status',1)->where('user',$user->id)->get(),
+            'transactions'=>$transactions
         ];
 
         return view('user.dashboard',$dataView);
