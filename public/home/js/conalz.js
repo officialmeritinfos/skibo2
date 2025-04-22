@@ -926,6 +926,12 @@
 
   });
 
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('fade-out');
+        setTimeout(() => preloader.style.display = 'none', 800);
+    });
+
   if ($(".before-after-twentytwenty").length) {
     $(".before-after-twentytwenty").each(function () {
       var Self = $(this);

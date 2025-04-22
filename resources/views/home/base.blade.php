@@ -108,6 +108,69 @@
     <!-- template styles -->
     <link rel="stylesheet" href="{{asset('home/css/conalz.css')}}" />
     <link rel="stylesheet" href="{{asset('home/css/conalz-responsive.css')}}" />
+    <style>
+        /* Fullscreen Frosted Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Centered Inner Box */
+        .preloader-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Glowing Spinner */
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border: 6px solid transparent;
+            border-top: 6px solid #00ffc6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 15px #00ffc6aa;
+        }
+
+        /* Optional branding text or logo */
+        .brand-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: #ffffffdd;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadein 1.5s ease-in-out infinite alternate;
+        }
+
+        /* Spinner Animation */
+        @keyframes  spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Text fade-in pulse */
+        @keyframes  fadein {
+            0% { opacity: 0.5; transform: translateY(2px); }
+            100% { opacity: 1; transform: translateY(-2px); }
+        }
+
+
+    </style>
 </head>
 
 <body class="custom-cursor">
@@ -116,8 +179,11 @@
 <div class="custom-cursor__cursor"></div>
 <div class="custom-cursor__cursor-two"></div>
 
-<div class="preloader">
-    <div class="preloader__image"></div>
+<div id="preloader">
+    <div class="preloader-inner">
+        <div class="spinner"></div>
+        <div class="brand-text">Loading Wealth...</div>
+    </div>
 </div>
 <!-- /.preloader -->
 

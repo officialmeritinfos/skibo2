@@ -13,7 +13,7 @@
                 transition: .7s;
                 margin-top: 20px;
             }
-            .single-price h3 {
+            .single-price h3 {s
                 font-size: 30px;
                 color: #000;
                 font-weight: 600;
@@ -35,7 +35,7 @@
             }
             .deal-top {
                 position: relative;
-                background: #68B44B;
+                background: #FF5733;
                 font-size: 16px;
                 text-transform: uppercase;
                 padding: 136px 24px 0;
@@ -47,7 +47,7 @@
                 bottom: -50px;
                 width: 0;
                 height: 0;
-                border-top: 50px solid #68B44B;
+                border-top: 50px solid #FF5733;
                 border-left: 175px solid transparent;
                 border-right: 183px solid transparent;
             }
@@ -71,7 +71,7 @@
                 display: inline-block;
                 font-size: 18px;
                 color: #fff;
-                background: #68B44B;
+                background: #FF5733;
                 padding: 8px 64px;
                 margin-top: 32px;
                 border-radius: 4px;
@@ -83,7 +83,7 @@
 
 
             .single-price:hover {
-                background: #68B44B;
+                background: #FF5733;
             }
             .single-price:hover .deal-top {
                 background: #262626;
@@ -104,7 +104,7 @@
                 left:20px;
                 padding:15px;
                 border-radius:40px;
-                background:#68B44B;
+                background:#FF5733;
             }
             .link-area a
             {
