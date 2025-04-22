@@ -53,14 +53,14 @@ class Dashboard extends Controller
                 ];
             });
 
-        $returns = InvestmentReturn::with('investment.packageModel')
-            ->whereHas('investment', function ($query) use ($user) {
+        $returns = InvestmentReturn::with('investmentModel.packageModel')
+            ->whereHas('investmentModel', function ($query) use ($user) {
                 $query->where('user', $user->id);
             })
             ->get()
             ->map(function ($item) {
-                $packageName = $item->investment && $item->investment->packageModel
-                    ? $item->investment->packageModel->name
+                $packageName = $item->investment && $item->investmentModel->packageModel
+                    ? $item->investmentModel->packageModel->name
                     : 'Unknown Package';
 
                 return [
@@ -68,7 +68,7 @@ class Dashboard extends Controller
                     'type' => 'investment interest',
                     'label' => "Return on Investment in {$packageName}",
                     'symbol' => '+',
-                    'reference' => $item->investment ? $item->investment->reference : 'N/A',
+                    'reference' => $item->investment ? $item->investmentModel->reference : 'N/A',
                     'created_at' => $item->created_at,
                 ];
             });
