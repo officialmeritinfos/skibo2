@@ -24,7 +24,10 @@ class Dashboard extends Controller
 
         $user = auth()->user();
 
-        $deposits = Deposit::where('user', $user->id)->get()->map(function ($item) {
+        $deposits = Deposit::where('user', $user->id)
+            ->latest()
+            ->take(5)
+            ->get()->map(function ($item) {
             return [
                 'amount' => $item->amount,
                 'type' => 'deposit',
@@ -38,6 +41,8 @@ class Dashboard extends Controller
 
         $investments = \App\Models\Investment::with('packageModel')
             ->where('user', $user->id)
+            ->latest()
+            ->take(5)
             ->get()
             ->map(function ($item) {
 
@@ -57,6 +62,8 @@ class Dashboard extends Controller
             ->whereHas('investmentModel', function ($query) use ($user) {
                 $query->where('user', $user->id);
             })
+            ->latest()
+            ->take(5)
             ->get()
             ->map(function ($item) {
                 $packageName = $item->investmentModel && $item->investmentModel->packageModel
@@ -74,7 +81,10 @@ class Dashboard extends Controller
             });
 
 
-        $withdrawals = Withdrawal::where('user', $user->id)->get()->map(function ($item) {
+        $withdrawals = Withdrawal::where('user', $user->id)
+            ->latest()
+            ->take(5)
+            ->get()->map(function ($item) {
             return [
                 'amount' => $item->amount,
                 'type' => 'withdrawal',
