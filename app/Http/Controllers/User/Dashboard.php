@@ -41,7 +41,7 @@ class Dashboard extends Controller
             ->get()
             ->map(function ($item) {
 
-                $packageName = $item->package ? $item->packageModel->name : 'Unknown Package';
+                $packageName = $item->packageModel  ? $item->packageModel->name : 'Unknown Package';
 
                 return [
                     'amount' => $item->amount,
@@ -59,7 +59,7 @@ class Dashboard extends Controller
             })
             ->get()
             ->map(function ($item) {
-                $packageName = $item->investment && $item->investmentModel->packageModel
+                $packageName = $item->investmentModel && $item->investmentModel->packageModel
                     ? $item->investmentModel->packageModel->name
                     : 'Unknown Package';
 
@@ -68,7 +68,7 @@ class Dashboard extends Controller
                     'type' => 'investment interest',
                     'label' => "Return on Investment in {$packageName}",
                     'symbol' => '+',
-                    'reference' => $item->investment ? $item->investmentModel->reference : 'N/A',
+                    'reference' => $item->investmentModel ? $item->investmentModel->reference : 'N/A',
                     'created_at' => $item->created_at,
                 ];
             });
