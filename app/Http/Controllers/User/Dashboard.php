@@ -41,7 +41,7 @@ class Dashboard extends Controller
             ->get()
             ->map(function ($item) {
 
-                $packageName = $item->packageModel  ? $item->packageModel->name : 'Unknown Package';
+                $packageName = $item->packageModel  ? $item->packageModel->name : 'Deleted Package';
 
                 return [
                     'amount' => $item->amount,
