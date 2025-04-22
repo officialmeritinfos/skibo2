@@ -341,26 +341,39 @@
 
     <div class="container py-4">
         <h5 class="mb-3 text-dark fw-bold">Recent Transactions</h5>
-        @foreach ($transactions as $tx)
-            <div class="transaction-card">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <div class="transaction-title">{{ $tx['label'] }}</div>
-                        <div class="transaction-id">{{ $tx['reference'] }}</div>
-                        <div class="transaction-date">{{ \Carbon\Carbon::parse($tx['created_at'])->format('M d, Y H:i') }}</div>
-                    </div>
-                    <div class="text-end">
-                        <div class="transaction-amount {{ $tx['symbol'] === '+' ? 'amount-positive' : 'amount-negative' }}">
-                            {{ $tx['symbol'] }}{{ number_format($tx['amount'], 2) }} USD
+
+        @if ($transactions->isEmpty())
+            <div class="text-center p-5 bg-white border rounded-3 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mb-3" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2m0 0c1.1 0 2-.9 2-2s-.9-2-2-2m0 6v.01M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/>
+                </svg>
+                <h6 class="fw-bold text-secondary mb-1">No Transactions Found</h6>
+                <p class="text-muted mb-0" style="font-size: 0.9rem;">You haven’t made any deposits, withdrawals or investments yet.</p>
+            </div>
+        @else
+            @foreach ($transactions as $tx)
+                <div class="transaction-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="transaction-title">{{ $tx['label'] }}</div>
+                            <div class="transaction-id">{{ $tx['reference'] }}</div>
+                            <div class="transaction-date">{{ \Carbon\Carbon::parse($tx['created_at'])->format('M d, Y H:i') }}</div>
                         </div>
-                        <div class="fee">−0 USD Fee</div>
-                        <div class="label">{{ ucfirst($tx['type']) }}</div>
-                        <div class="transaction-status">Success</div>
+                        <div class="text-end">
+                            <div class="transaction-amount {{ $tx['symbol'] === '+' ? 'amount-positive' : 'amount-negative' }}">
+                                {{ $tx['symbol'] }}{{ number_format($tx['amount'], 2) }} USD
+                            </div>
+                            <div class="fee">−0 USD Fee</div>
+                            <div class="label">{{ ucfirst($tx['type']) }}</div>
+                            <div class="transaction-status">Success</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @endif
     </div>
+
 
 
 @endsection
