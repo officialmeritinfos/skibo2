@@ -106,7 +106,7 @@
     <link rel="stylesheet" href="{{asset('home/vendors/polyglot-language-switcher/polyglot-language-switcher.css')}}" />
 
     <!-- template styles -->
-    <link rel="stylesheet" href="{{asset('home/css/conalz.css')}}" />
+    <link rel="stylesheet" href="{{asset('home/css/conalz.css?ver=1.0.0')}}" />
     <link rel="stylesheet" href="{{asset('home/css/conalz-responsive.css')}}" />
     <style>
         /* Fullscreen Frosted Preloader */
@@ -506,7 +506,7 @@
 <script src="{{asset('home/vendors/circleType/jquery.circleType.js')}}"></script>
 <script src="{{asset('home/vendors/circleType/jquery.lettering.min.js')}}"></script>
 <script src="{{asset('home/vendors/polyglot-language-switcher/jquery.polyglot.language.switcher.js')}}"></script>
-<script src="{{asset('home/js/conalz.js')}}"></script>
+<script src="{{asset('home/js/conalz.js?ver=1.0.0')}}"></script>
 <!-- Google language start -->
 <style>
 
